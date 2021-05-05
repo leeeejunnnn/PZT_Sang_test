@@ -25,7 +25,7 @@ class data_pipeline(Dataset):
         self.data_list = sorted(glob(self.data_dir + '*.npy'))
 
     def __len__(self):
-        return (self.data_list.shape[0])
+        return len(self.data_list)
 
     def __getitem__(self, idx):
         data = np.load(self.data_list[idx])
@@ -34,3 +34,5 @@ class data_pipeline(Dataset):
         else: 
             target = [1]
         return data, target
+
+# %%
