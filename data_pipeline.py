@@ -22,26 +22,15 @@ class data_pipeline(Dataset):
         self.num_target = []
         self.data = []
         self.target = []
-        data_list = sorted(glob(self.data_dir + '*time*.npy'))
-        target_list = sorted(glob(self.data_dir + '*ref*.npy'))
-        for i in range(len(data_list)):
-            data_a = np.load(data_list[i])
-            data_a = data_a.reshape(-1,1200)
-            target_a = np.load(target_list[i])
-            target_a = target_a.reshape(-1,1)
-            self.num_data.append(data_a.shape[0])
-            self.num_target.append(target_a.shape[0])
-            self.data.append(data_a)
-            self.target.append(target_a)
-        self.data = np.vstack(self.data)
-        self.target = np.vstack(self.target)
+        self.data_list = sorted(glob(self.data_dir + '*.npy'))
 
     def __len__(self):
-        return (self.data.shape[0])
+        return (self.data_list.shape[0])
 
     def __getitem__(self, idx):
-        target = self.target[idx,:]
-        x = self.data[idx,:]
-        return x, target
-
-
+        data = np.load(self.data_list[idx])
+        if data_list[idx].find("Int")==0:
+            target = [0]
+        else: 
+            target = [1]
+        return data, target
