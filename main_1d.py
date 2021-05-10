@@ -14,8 +14,8 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-from data_pipeline import data_pipeline
-from model import CNNv1
+from data_pipeline import data_pipeline_1d
+from model import CNN_1dv
 
 #%%
 # device GPU / CPU
@@ -26,13 +26,13 @@ print(torch.cuda.get_device_name(device))
 #device = torch.device('cpu')
 #%%
 #  Data parameters 
-Data_dir = './dataset/33d'
+Data_dir = './dataset/'
 
 # NN training parameters
 TENSORBOARD_STATE = True
 num_epoch = 2048
-BATCH_SIZE = 40
-model = CNNv1()
+BATCH_SIZE = 100
+model = CNN_1dv()
 print(model)
 #val_ratio = 0.3
 Learning_rate = 0.001
@@ -40,8 +40,8 @@ L2_decay = 1e-8
 LRSTEP = 5
 GAMMA = 0.1
 #%%
-dataset = data_pipeline(Data_dir)
-train_dataset, val_dataset = torch.utils.data.random_split(dataset, (40, 20) )
+dataset = data_pipeline_1d(Data_dir)
+train_dataset, val_dataset = torch.utils.data.random_split(dataset, (1500, 480) )
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
 val_loader = DataLoader(val_dataset, shuffle=False, num_workers=0)
 
