@@ -30,12 +30,13 @@ Data_dir = './dataset/'
 
 # NN training parameters
 TENSORBOARD_STATE = True
+train_num = 10000
 num_epoch = 2048
-BATCH_SIZE = 100
+BATCH_SIZE = 1500
 model = CNN_1dv()
 print(model)
 #val_ratio = 0.3
-Learning_rate = 0.001
+Learning_rate = 0.0001
 L2_decay = 1e-8
 LRSTEP = 5
 GAMMA = 0.1
@@ -55,7 +56,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=Learning_rate)
 ckpt_dir = './Checkpoint'
 if not os.path.exists(ckpt_dir):
     os.makedirs(ckpt_dir)
-ckpt_path = '%s%s.pt' % (ckpt_dir, '/Checkpoint_exp')
+ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_1d', train_num)
 
 #%%
 loss_array = []
@@ -114,8 +115,8 @@ for x_test, target_test in val_loader:
     test_array.append(logits_test.argmax(dim=1).cpu().data.numpy())
     predicted = logits_test.argmax(dim=1).detach().cpu()
     actual = target_test.detach().cpu()
-#    for i in range(len(predicted)):
- #       cfm[predicted[i],actual[i]] += 1
+    for i in range(len(predicted)):
+        cfm[predicted[i],actual[i]] += 1
     n += x_test.size(0)
 
 test_loss /= n
@@ -131,23 +132,29 @@ print('Test accuracy is {:.4f}'.format(test_acc))
 
 
 #%%
-output_array = []
-loss_array = []
-target_array = []
-model.eval()
-for x, target in val_loader:
-    x = x.to(device, dtype=torch.float)
-    target = target.to(device)
-    target_array.append(target.cpu().data.numpy())
-    output = model(x)
+import pandas as pd
+import seaborn as sn
 
-    loss = output-target
-    output_array.append(output.cpu().data.numpy())
-    loss_array.append(loss.cpu().data.numpy())
+def plot_confusion(confusion_matrix,classes,vis_format=None):
+    plt.figure(figsize=(6,5))
+    if vis_format == 'percent':
+        confusion_matrix = confusion_matrix/np.sum(confusion_matrix)*100
+        vis_fmt = '.2f'
+    else:
+        vis_fmt = '.0f'
+    df_cm_percent = pd.DataFrame(confusion_matrix, classes, classes)
+    sn.set(font_scale=1.2)
+    sn.heatmap(df_cm_percent, cmap='Blues',
+               annot=True, fmt=vis_fmt, annot_kws={"size":16},
+               linewidths=.5, linecolor='k', square=True)
+    plt.title(str('1d') + ' Confusion Matrix (%)\n' + 'Test accuracy = {:.2f}%'.format(test_acc*100))
+    plt.xlabel('Actual')
+    plt.ylabel('Predicted')
+    plt.xticks(rotation=45)  
+    plt.tight_layout()
+    plt.show()
 
-
-
-#%%
+plot_confusion(cfm,list('12'),'percent')
 
 
 
