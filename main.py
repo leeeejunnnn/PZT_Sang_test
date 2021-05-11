@@ -26,7 +26,7 @@ print(torch.cuda.get_device_name(device))
 #device = torch.device('cpu')
 #%%
 #  Data parameters 
-Data_dir = './dataset/33d'
+Data_dir = './dataset/'
 
 # NN training parameters
 TENSORBOARD_STATE = True

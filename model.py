@@ -71,7 +71,7 @@ class CNN_1dv(nn.Module):
             nn.Linear(1000, 100),
             nn.BatchNorm1d(100),
             nn.ReLU(),
-            nn.Linear(100, 1)
+            nn.Linear(100, 2)
         )
     
     def forward(self,x):

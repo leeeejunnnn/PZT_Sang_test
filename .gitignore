@@ -224,4 +224,4 @@ $RECYCLE.BIN/
 
 /dataset
 /Checkpoint
-*.npy
+loss.npy
