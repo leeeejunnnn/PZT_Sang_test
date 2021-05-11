@@ -42,7 +42,7 @@ class data_pipeline_1d(Dataset):
         return len(self.data_list)
     
     def __getitem__(self, idx):
-        data = np.load(self.data_list[idx])
+        data = np.load(self.data_list[idx][:10000])
         if self.data_list[idx].find("int") > 0:
             target = np.array([1, 0])
         else: 

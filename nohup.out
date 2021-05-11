@@ -1,0 +1,39 @@
+Available devices  2
+Current cuda device  0
+TITAN RTX
+CNN_1dv(
+  (layer_1d): Sequential(
+    (0): Linear(in_features=100000, out_features=1000, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=1000, out_features=100, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=100, out_features=10, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=10, out_features=2, bias=True)
+  )
+)
+epoch: 0  loss: 0.6996537446975708
+epoch: 10  loss: 0.38823291659355164
+epoch: 20  loss: 0.2710937261581421
+epoch: 30  loss: 0.22393447160720825
+epoch: 40  loss: 0.19417031109333038
+epoch: 50  loss: 0.16921129822731018
+epoch: 60  loss: 0.1462869495153427
+epoch: 70  loss: 0.12609371542930603
+epoch: 80  loss: 0.10655246675014496
+epoch: 90  loss: 0.09059284627437592
+epoch: 100  loss: 0.07792425900697708
+epoch: 110  loss: 0.06735391914844513
+epoch: 120  loss: 0.05921568349003792
+epoch: 130  loss: 0.051170725375413895
+epoch: 140  loss: 0.04462753236293793
+epoch: 150  loss: 0.03885069862008095
+epoch: 160  loss: 0.034060798585414886
+epoch: 170  loss: 0.028318578377366066
+epoch: 180  loss: 0.024731460958719254
+epoch: 190  loss: 0.021432917565107346
+epoch: 200  loss: 0.018480448052287102
+epoch: 210  loss: 0.016040751710534096
+epoch: 220  loss: 0.013808700256049633
+epoch: 230  loss: 0.011852792464196682
+epoch: 240  loss: 0.010126647539436817

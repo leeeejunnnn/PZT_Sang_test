@@ -62,16 +62,16 @@ class CNN_1dv(nn.Module):
     def __init__(self):
         super(CNN_1dv, self).__init__()
         self.layer_1d = nn.Sequential(
-            nn.Linear(100000,10000),
-            nn.BatchNorm1d(10000),
-            nn.ReLU(),
-            nn.Linear(10000, 1000),
-            nn.BatchNorm1d(1000),
+            nn.Linear(100000,1000),
+#            nn.BatchNorm1d(10000),
             nn.ReLU(),
             nn.Linear(1000, 100),
-            nn.BatchNorm1d(100),
+#            nn.BatchNorm1d(1000),
             nn.ReLU(),
-            nn.Linear(100, 2)
+            nn.Linear(100, 10),
+#            nn.BatchNorm1d(100),
+            nn.ReLU(),
+            nn.Linear(10, 2)
         )
     
     def forward(self,x):
