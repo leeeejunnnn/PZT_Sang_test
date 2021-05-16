@@ -56,7 +56,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=Learning_rate)
 ckpt_dir = './Checkpoint'
 if not os.path.exists(ckpt_dir):
     os.makedirs(ckpt_dir)
-ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_1d', train_num)
+ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_3d', train_num)
 print(ckpt_path)
 
 #%%
@@ -148,7 +148,7 @@ def plot_confusion(confusion_matrix,classes,vis_format=None):
     sn.heatmap(df_cm_percent, cmap='Blues',
                annot=True, fmt=vis_fmt, annot_kws={"size":16},
                linewidths=.5, linecolor='k', square=True)
-    plt.title(str('1d') + ' Confusion Matrix (%)\n' + 'Test accuracy = {:.2f}%'.format(test_acc*100))
+    plt.title(str('3d') + ' Confusion Matrix (%)\n' + 'Test accuracy = {:.2f}%'.format(test_acc*100))
     plt.xlabel('Actual')
     plt.ylabel('Predicted')
     plt.xticks(rotation=45)  
