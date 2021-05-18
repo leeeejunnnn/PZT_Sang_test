@@ -49,3 +49,41 @@ class data_pipeline_1d(Dataset):
         else: 
             target = np.array([0, 1])
         return datared, target
+
+# %%
+class data_pipeline_3d(Dataset):
+    def __init__(self, data_dir):
+        self.data_dir = data_dir
+        self.data_list = sorted(glob(self.data_dir + '/3d/*.npy'))
+
+    def __len__(self):
+        return len(self.data_list)
+    
+    def __getitem__(self, idx):
+        data = np.load(self.data_list[idx])
+#        data = data[:,0:5000]
+        if self.data_list[idx].find("Int") > 0:
+            target = np.array([1, 0])
+        else: 
+            target = np.array([0, 1])
+        return data, target
+
+
+#%%
+# %%
+class data_pipeline_11d(Dataset):
+    def __init__(self, data_dir):
+        self.data_dir = data_dir
+        self.data_list = sorted(glob(self.data_dir + '/11d/*.npy'))
+
+    def __len__(self):
+        return len(self.data_list)
+    
+    def __getitem__(self, idx):
+        data = np.load(self.data_list[idx])
+#        data = data[:,0:5000]
+        if self.data_list[idx].find("Int") > 0:
+            target = np.array([1, 0])
+        else: 
+            target = np.array([0, 1])
+        return data, target

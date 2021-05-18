@@ -14,8 +14,8 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-from data_pipeline import data_pipeline_3d
-from model import CNN_3dv
+from data_pipeline import data_pipeline_11d
+from model import CNN_11dv
 
 #%%
 # device GPU / CPU
@@ -30,10 +30,10 @@ Data_dir = './dataset/'
 
 # NN training parameters
 TENSORBOARD_STATE = True
-train_num = 3
-num_epoch = 1500
+train_num = 1
+num_epoch = 300
 BATCH_SIZE = 500
-model = CNN_3dv()
+model = CNN_11dv()
 print(model)
 val_ratio = 0.3
 Learning_rate = 0.0001
@@ -41,9 +41,11 @@ L2_decay = 1e-8
 LRSTEP = 5
 GAMMA = 0.1
 #%%
-dataset = data_pipeline_3d(Data_dir)
-val_num = len(dataset)*val_ratio
-train_dataset, val_dataset = torch.utils.data.random_split(dataset, (330, 330) )
+dataset = data_pipeline_11d(Data_dir)
+print(len(dataset))
+
+#%%
+train_dataset, val_dataset = torch.utils.data.random_split(dataset, (100, 80) )
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
 val_loader = DataLoader(val_dataset, shuffle=False, num_workers=0)
 
@@ -57,7 +59,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=Learning_rate)
 ckpt_dir = './Checkpoint'
 if not os.path.exists(ckpt_dir):
     os.makedirs(ckpt_dir)
-ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_3d', train_num)
+ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_11d', train_num)
 print(ckpt_path)
 
 #%%
@@ -153,21 +155,3 @@ def plot_confusion(confusion_matrix,classes,vis_format=None):
 plot_confusion(cfm,['intact', 'damaged'],'percent')
 
 
-
-
-
-
-
-#%%
-output_array = np.vstack(output_array)
-loss_array = np.vstack(loss_array)
-target_array = np.vstack(target_array)
-plt.scatter(output_array, target_array, s=1, c="gray")
-#plt.plot(output,output, c="red")
-plt.show()
-plt.plot(loss_array)
-plt.show()
-plt.plot(sorted(loss_array))
-plt.show()
-print(np.mean(abs(loss_array)))
-# %%
