@@ -31,7 +31,7 @@ Data_dir = './dataset/'
 # NN training parameters
 TENSORBOARD_STATE = True
 train_num = 1
-num_epoch = 300
+num_epoch = 500
 BATCH_SIZE = 500
 model = CNN_11dv()
 print(model)
@@ -64,8 +64,14 @@ ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_11d', train_num)
 print(ckpt_path)
 
 #%%
+summary = SummaryWriter()
+
 loss_array = []
+train_losses = []
+validation_losses = []
+best_validation_acc = 0
 for epoch in range(num_epoch):
+    one_ep_start = time.time()
     for x, target in train_loader:
         
         x = x.to(device, dtype=torch.float)
@@ -82,15 +88,47 @@ for epoch in range(num_epoch):
     if epoch % 10 == 0:
         print('epoch:', epoch, ' loss:', loss.item())
         loss_array.append(loss)
-    np.save('loss.npy',loss_array)    
     
+    #np.save('loss.npy',loss_array)    
+    summary.add_scalar('loss/train_loss', loss.item(), epoch)
+    train_losses.append(loss.item())
     #scheduler.step()
-    
-ckpt = {'model': model.state_dict(),
-        'optimizer': optimizer.state_dict(),
-        }
-torch.save(ckpt,ckpt_path)
-print('Higher validation accuracy, Checkpoint Saved!')
+
+    #valdiation
+    model.eval()
+    n = 0
+    validation_loss = 0.
+    validation_acc = 0.
+
+    for x_val, target_val in val_loader:
+        x_val = x_val.to(device, dtype=torch.float)
+        target_val = np.argmax(target_val,axis=1)
+        target_val = target_val.to(device, dtype=torch.long)
+
+        pred_val = model(x_val)
+        validation_loss += F.cross_entropy(pred_val, target_val).item()
+        validation_acc += (pred_val.argmax(dim=1) == target_val).float().sum().item()
+        n += x_val.size(0)
+
+    validation_loss /= n
+    validation_acc /= n
+    if epoch % 10 ==0 :
+        print('Validation loss: {:.4f}, Validation accuracy: {:.4f}'.format(validation_loss, validation_acc))
+    summary.add_scalar('loss/validation_loss',validation_loss, epoch)
+    validation_losses.append(validation_loss)
+
+    if validation_acc > best_validation_acc:
+        best_validation_acc = validation_acc
+        ckpt = {'model': model.state_dict(),
+                'optimizer': optimizer.state_dict(),
+                'best_validation_acc': best_validation_acc}
+        torch.save(ckpt,ckpt_path)
+        print('Higher validation accuracy, Checkpoint Saved!')
+
+    if epoch % 50 == 0:    
+        curr_time = time.time()
+        print("one epoch time = %.2f" %(curr_time-one_ep_start))
+        print('########################################################')
 
 #%%
 plt.plot(loss_array, label='train loss')
@@ -98,8 +136,20 @@ plt.legend()
 plt.show()
 
 
-#%%
+#%% test check point
+test_ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_11d', train_num)
+try:
+    test_ckpt = torch.load(test_ckpt_path)
+    model.load_state_dict(test_ckpt['model'])
+    optimizer.load_state_dict(test_ckpt['optimizer'])
+    best_validation_acc = test_ckpt['best_validation_acc']
+    print('Checkpoint load! Current best validation accuracy is {:.4f}'.format(best_validation_acc))
+except:
+    print('There is no checkpoint or network has different architecture.')
 
+
+
+#%% test
 model.eval()
 n = 0.
 test_loss = 0.
@@ -146,13 +196,17 @@ def plot_confusion(confusion_matrix,classes,vis_format=None):
     sn.heatmap(df_cm_percent, cmap='Blues',
                annot=True, fmt=vis_fmt, annot_kws={"size":16},
                linewidths=.5, linecolor='k', square=True)
-    plt.title(str('3d') + ' Confusion Matrix (%)\n' + 'Test accuracy = {:.2f}%'.format(test_acc*100))
+    plt.title(str('11d') + ' Confusion Matrix (%)\n' + 'Test accuracy = {:.2f}%'.format(test_acc*100))
     plt.xlabel('Actual')
     plt.ylabel('Predicted')
-    plt.xticks(rotation=45)  
+    #plt.xticks(rotation=45)  
     plt.tight_layout()
+    #plt.savefig('test_result'+str(train_num)+'.png')
     plt.show()
 
 plot_confusion(cfm,['intact', 'damaged'],'percent')
 
 
+
+
+# %%

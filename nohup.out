@@ -223,3 +223,975 @@ Traceback (most recent call last):
   File "main_1d.py", line 168, in <module>
     target_array = np.vstack(target_array)
 ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2021-05-20 12:00:11.659084: W tensorflow/stream_executor/platform/default/dso_loader.cc:60] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2021-05-20 12:00:11.659139: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+Available devices  2
+Current cuda device  0
+TITAN RTX
+CNN_11dv(
+  (layer_11d): Sequential(
+    (0): Conv2d(1, 10, kernel_size=(3, 1000), stride=(1, 50), padding=(1, 0))
+    (1): BatchNorm2d(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv2d(10, 25, kernel_size=(3, 100), stride=(1, 2), padding=(1, 0))
+    (4): BatchNorm2d(25, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv2d(25, 50, kernel_size=(5, 50), stride=(1, 2), padding=(1, 0))
+    (7): BatchNorm2d(50, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): Conv2d(50, 100, kernel_size=(5, 50), stride=(1, 2), padding=(1, 0))
+    (10): BatchNorm2d(100, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (11): ReLU()
+    (12): Conv2d(100, 100, kernel_size=(5, 50), stride=(1, 2), padding=(1, 0))
+    (13): BatchNorm2d(100, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): ReLU()
+  )
+  (layer_fc): Sequential(
+    (0): Linear(in_features=37500, out_features=1000, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=1000, out_features=100, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=100, out_features=10, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=10, out_features=2, bias=True)
+  )
+)
+180
+./Checkpoint/Checkpoint_exp_11d1.pt
+epoch: 0  loss: 0.7443363666534424
+Validation loss: 0.0178, Validation accuracy: 0.5250
+Higher validation accuracy, Checkpoint Saved!
+one epoch time = 3.62
+########################################################
+Validation loss: 0.0178, Validation accuracy: 0.5250
+one epoch time = 1.62
+########################################################
+Validation loss: 0.0177, Validation accuracy: 0.5250
+one epoch time = 1.51
+########################################################
+Validation loss: 0.0176, Validation accuracy: 0.5250
+one epoch time = 1.50
+########################################################
+Validation loss: 0.0175, Validation accuracy: 0.5250
+one epoch time = 1.51
+########################################################
+Validation loss: 0.0173, Validation accuracy: 0.5250
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0171, Validation accuracy: 0.5250
+one epoch time = 1.51
+########################################################
+Validation loss: 0.0166, Validation accuracy: 0.7500
+Higher validation accuracy, Checkpoint Saved!
+one epoch time = 3.29
+########################################################
+Validation loss: 0.0156, Validation accuracy: 0.7000
+one epoch time = 1.62
+########################################################
+Validation loss: 0.0139, Validation accuracy: 0.7500
+one epoch time = 1.51
+########################################################
+epoch: 10  loss: 0.5311962366104126
+Validation loss: 0.0120, Validation accuracy: 0.8250
+Higher validation accuracy, Checkpoint Saved!
+one epoch time = 3.30
+########################################################
+Validation loss: 0.0140, Validation accuracy: 0.7500
+one epoch time = 1.61
+########################################################
+Validation loss: 0.0112, Validation accuracy: 0.8250
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9250
+Higher validation accuracy, Checkpoint Saved!
+one epoch time = 3.26
+########################################################
+Validation loss: 0.0167, Validation accuracy: 0.7750
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0100, Validation accuracy: 0.8250
+one epoch time = 1.51
+########################################################
+Validation loss: 0.0069, Validation accuracy: 0.9500
+Higher validation accuracy, Checkpoint Saved!
+one epoch time = 3.27
+########################################################
+Validation loss: 0.0064, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0062, Validation accuracy: 0.9500
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0074, Validation accuracy: 0.9500
+one epoch time = 1.53
+########################################################
+epoch: 20  loss: 0.1593063771724701
+Validation loss: 0.0106, Validation accuracy: 0.9000
+one epoch time = 1.51
+########################################################
+Validation loss: 0.0115, Validation accuracy: 0.9250
+one epoch time = 1.51
+########################################################
+Validation loss: 0.0090, Validation accuracy: 0.9500
+one epoch time = 1.51
+########################################################
+Validation loss: 0.0067, Validation accuracy: 0.9500
+one epoch time = 1.51
+########################################################
+Validation loss: 0.0067, Validation accuracy: 0.9500
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0091, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0129, Validation accuracy: 0.9500
+one epoch time = 1.58
+########################################################
+Validation loss: 0.0134, Validation accuracy: 0.9500
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0105, Validation accuracy: 0.9500
+one epoch time = 1.53
+########################################################
+Validation loss: 0.0106, Validation accuracy: 0.9500
+one epoch time = 1.54
+########################################################
+epoch: 30  loss: 0.04241703823208809
+Validation loss: 0.0136, Validation accuracy: 0.9500
+one epoch time = 1.54
+########################################################
+Validation loss: 0.0154, Validation accuracy: 0.9250
+one epoch time = 1.55
+########################################################
+Validation loss: 0.0115, Validation accuracy: 0.9500
+one epoch time = 1.54
+########################################################
+Validation loss: 0.0093, Validation accuracy: 0.9500
+one epoch time = 1.54
+########################################################
+Validation loss: 0.0109, Validation accuracy: 0.9500
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0129, Validation accuracy: 0.9500
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0131, Validation accuracy: 0.9500
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0106, Validation accuracy: 0.9500
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0080, Validation accuracy: 0.9500
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0067, Validation accuracy: 0.9500
+one epoch time = 1.51
+########################################################
+epoch: 40  loss: 0.008758937008678913
+Validation loss: 0.0084, Validation accuracy: 0.9500
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0103, Validation accuracy: 0.9500
+one epoch time = 1.52
+########################################################
+Validation loss: 0.0121, Validation accuracy: 0.9500
+one epoch time = 1.54
+########################################################
+Validation loss: 0.0132, Validation accuracy: 0.9250
+one epoch time = 1.53
+########################################################
+Validation loss: 0.0122, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0106, Validation accuracy: 0.9500
+one epoch time = 1.71
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.76
+########################################################
+Validation loss: 0.0074, Validation accuracy: 0.9500
+one epoch time = 1.78
+########################################################
+Validation loss: 0.0061, Validation accuracy: 0.9500
+one epoch time = 1.78
+########################################################
+Validation loss: 0.0054, Validation accuracy: 0.9750
+Higher validation accuracy, Checkpoint Saved!
+one epoch time = 3.63
+########################################################
+epoch: 50  loss: 0.0009518206934444606
+Validation loss: 0.0052, Validation accuracy: 0.9750
+one epoch time = 1.61
+########################################################
+Validation loss: 0.0054, Validation accuracy: 0.9750
+one epoch time = 1.70
+########################################################
+Validation loss: 0.0060, Validation accuracy: 0.9500
+one epoch time = 1.74
+########################################################
+Validation loss: 0.0068, Validation accuracy: 0.9500
+one epoch time = 1.77
+########################################################
+Validation loss: 0.0077, Validation accuracy: 0.9500
+one epoch time = 1.78
+########################################################
+Validation loss: 0.0085, Validation accuracy: 0.9500
+one epoch time = 1.72
+########################################################
+Validation loss: 0.0093, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0100, Validation accuracy: 0.9500
+one epoch time = 1.53
+########################################################
+Validation loss: 0.0106, Validation accuracy: 0.9500
+one epoch time = 1.54
+########################################################
+Validation loss: 0.0111, Validation accuracy: 0.9500
+one epoch time = 1.53
+########################################################
+epoch: 60  loss: 0.00010601196117931977
+Validation loss: 0.0115, Validation accuracy: 0.9500
+one epoch time = 1.53
+########################################################
+Validation loss: 0.0117, Validation accuracy: 0.9500
+one epoch time = 1.53
+########################################################
+Validation loss: 0.0117, Validation accuracy: 0.9500
+one epoch time = 1.53
+########################################################
+Validation loss: 0.0117, Validation accuracy: 0.9500
+one epoch time = 1.54
+########################################################
+Validation loss: 0.0115, Validation accuracy: 0.9500
+one epoch time = 1.53
+########################################################
+Validation loss: 0.0112, Validation accuracy: 0.9500
+one epoch time = 1.54
+########################################################
+Validation loss: 0.0109, Validation accuracy: 0.9500
+one epoch time = 1.55
+########################################################
+Validation loss: 0.0105, Validation accuracy: 0.9500
+one epoch time = 1.54
+########################################################
+Validation loss: 0.0101, Validation accuracy: 0.9500
+one epoch time = 1.55
+########################################################
+Validation loss: 0.0098, Validation accuracy: 0.9500
+one epoch time = 1.54
+########################################################
+epoch: 70  loss: 2.0971643607481383e-05
+Validation loss: 0.0095, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0091, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.62
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.61
+########################################################
+Validation loss: 0.0083, Validation accuracy: 0.9500
+one epoch time = 1.62
+########################################################
+Validation loss: 0.0081, Validation accuracy: 0.9500
+one epoch time = 1.62
+########################################################
+Validation loss: 0.0078, Validation accuracy: 0.9500
+one epoch time = 1.62
+########################################################
+Validation loss: 0.0077, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0075, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0073, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+epoch: 80  loss: 1.289122701564338e-05
+Validation loss: 0.0072, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0071, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0070, Validation accuracy: 0.9500
+one epoch time = 1.67
+########################################################
+Validation loss: 0.0069, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0069, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0068, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0068, Validation accuracy: 0.9500
+one epoch time = 1.71
+########################################################
+Validation loss: 0.0068, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0068, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0068, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+epoch: 90  loss: 1.3898055840400048e-05
+Validation loss: 0.0068, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0068, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0068, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0069, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0069, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0069, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0070, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0070, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0071, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0072, Validation accuracy: 0.9500
+one epoch time = 1.67
+########################################################
+epoch: 100  loss: 1.105926730815554e-05
+Validation loss: 0.0072, Validation accuracy: 0.9500
+one epoch time = 1.67
+########################################################
+Validation loss: 0.0073, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0073, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0074, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0074, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0075, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0076, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0076, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0077, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0077, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+epoch: 110  loss: 9.087923899642192e-06
+Validation loss: 0.0078, Validation accuracy: 0.9500
+one epoch time = 1.71
+########################################################
+Validation loss: 0.0078, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0079, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0079, Validation accuracy: 0.9500
+one epoch time = 1.73
+########################################################
+Validation loss: 0.0079, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0080, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0080, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0081, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0081, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0081, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+epoch: 120  loss: 8.213030923798215e-06
+Validation loss: 0.0082, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0082, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0082, Validation accuracy: 0.9500
+one epoch time = 1.70
+########################################################
+Validation loss: 0.0083, Validation accuracy: 0.9500
+one epoch time = 1.69
+########################################################
+Validation loss: 0.0083, Validation accuracy: 0.9500
+one epoch time = 1.70
+########################################################
+Validation loss: 0.0083, Validation accuracy: 0.9500
+one epoch time = 1.75
+########################################################
+Validation loss: 0.0083, Validation accuracy: 0.9500
+one epoch time = 1.68
+########################################################
+Validation loss: 0.0084, Validation accuracy: 0.9500
+one epoch time = 1.65
+########################################################
+Validation loss: 0.0084, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0084, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 130  loss: 7.774372534186114e-06
+Validation loss: 0.0084, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0085, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0085, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0085, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0085, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0085, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0085, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0085, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+epoch: 140  loss: 7.477563485736027e-06
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.67
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 150  loss: 7.24035817256663e-06
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.62
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 160  loss: 6.990050223976141e-06
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.60
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.59
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+epoch: 170  loss: 6.7528480940382e-06
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0086, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.58
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.58
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.56
+########################################################
+epoch: 180  loss: 6.52994913252769e-06
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.57
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.59
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.62
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.65
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 190  loss: 6.3106249399425e-06
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 200  loss: 6.1008377088001e-06
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.65
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 210  loss: 5.897009032196365e-06
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0087, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.62
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 220  loss: 5.699138910131296e-06
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 230  loss: 5.5084201449062675e-06
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 240  loss: 5.329621671990026e-06
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 250  loss: 5.1508213800843805e-06
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0088, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 260  loss: 4.983941835234873e-06
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 270  loss: 4.8230222091660835e-06
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 280  loss: 4.670445377996657e-06
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+epoch: 290  loss: 4.516676199273206e-06
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.64
+########################################################
+Validation loss: 0.0089, Validation accuracy: 0.9500
+one epoch time = 1.63
+########################################################
+Test accuracy is 0.9500

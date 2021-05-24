@@ -225,3 +225,5 @@ $RECYCLE.BIN/
 /dataset
 /Checkpoint
 loss.npy
+runs/
+.png
