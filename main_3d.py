@@ -30,8 +30,8 @@ Data_dir = './dataset/'
 
 # NN training parameters
 TENSORBOARD_STATE = True
-train_num = 3
-num_epoch = 1500
+train_num = 1
+num_epoch = 500
 BATCH_SIZE = 500
 model = CNN_3dv()
 print(model)
@@ -43,10 +43,10 @@ GAMMA = 0.1
 #%%
 dataset = data_pipeline_3d(Data_dir)
 val_num = len(dataset)*val_ratio
-train_dataset, val_dataset = torch.utils.data.random_split(dataset, (330, 330) )
+train_dataset, val_dataset, test_dataset = torch.utils.data.random_split(dataset, (330, 130, 200) )
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
-val_loader = DataLoader(val_dataset, shuffle=False, num_workers=0)
-
+val_loader = DataLoader(val_dataset, batch_size=len(val_dataset), shuffle=True, num_workers=0)
+test_loader = DataLoader(test_dataset, shuffle=False, num_workers=0)
 #%%
 model = model.to(device)
 loss_func = nn.CrossEntropyLoss().to(device)
@@ -61,7 +61,12 @@ ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_3d', train_num)
 print(ckpt_path)
 
 #%%
+summary = SummaryWriter()
+
 loss_array = []
+train_losses = []
+validation_losses = []
+best_validation_acc = 0
 for epoch in range(num_epoch):
     for x, target in train_loader:
         
@@ -79,24 +84,66 @@ for epoch in range(num_epoch):
     if epoch % 10 == 0:
         print('epoch:', epoch, ' loss:', loss.item())
         loss_array.append(loss)
-    np.save('loss.npy',loss_array)    
-    
+    #np.save('loss.npy',loss_array)    
+    summary.add_scalar('loss/train_loss', loss.item(), epoch)
+    train_losses.append(loss.item())    
     #scheduler.step()
     
-ckpt = {'model': model.state_dict(),
-        'optimizer': optimizer.state_dict(),
-        }
-torch.save(ckpt,ckpt_path)
-print('Higher validation accuracy, Checkpoint Saved!')
+    #valdiation
+    model.eval()
+    n = 0
+    validation_loss = 0.
+    validation_acc = 0.
+
+    for x_val, target_val in val_loader:
+        x_val = x_val.to(device, dtype=torch.float)
+        target_val = np.argmax(target_val,axis=1)
+        target_val = target_val.to(device, dtype=torch.long)
+
+        pred_val = model(x_val)
+        validation_loss += F.cross_entropy(pred_val, target_val).item()
+        validation_acc += (pred_val.argmax(dim=1) == target_val).float().sum().item()
+        n += x_val.size(0)
+
+    validation_loss /= n
+    validation_acc /= n
+    if epoch % 10 ==0 :
+        print('Validation loss: {:.4f}, Validation accuracy: {:.4f}'.format(validation_loss, validation_acc))
+    summary.add_scalar('loss/validation_loss',validation_loss, epoch)
+    validation_losses.append(validation_loss)
+
+    if validation_acc > best_validation_acc:
+        best_validation_acc = validation_acc
+        ckpt = {'model': model.state_dict(),
+                'optimizer': optimizer.state_dict(),
+                'best_validation_acc': best_validation_acc}
+        torch.save(ckpt,ckpt_path)
+        print('Higher validation accuracy, Checkpoint Saved!')
+
+    if epoch % 50 == 0:    
+        curr_time = time.time()
+        print("one epoch time = %.2f" %(curr_time-one_ep_start))
+        print('########################################################')
 
 #%%
 plt.plot(loss_array, label='train loss')
 plt.legend()
+plt.savefig('test_result_loss_3d'+str(train_num)+'.png')
 plt.show()
 
 
 #%%
+test_ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_3d', train_num)
+try:
+    test_ckpt = torch.load(test_ckpt_path)
+    model.load_state_dict(test_ckpt['model'])
+    optimizer.load_state_dict(test_ckpt['optimizer'])
+    best_validation_acc = test_ckpt['best_validation_acc']
+    print('Checkpoint load! Current best validation accuracy is {:.4f}'.format(best_validation_acc))
+except:
+    print('There is no checkpoint or network has different architecture.')
 
+#%%
 model.eval()
 n = 0.
 test_loss = 0.
@@ -148,26 +195,9 @@ def plot_confusion(confusion_matrix,classes,vis_format=None):
     plt.ylabel('Predicted')
     plt.xticks(rotation=45)  
     plt.tight_layout()
+    plt.savefig('test_resul_3d'+str(train_num)+'.png')
     plt.show()
 
 plot_confusion(cfm,['intact', 'damaged'],'percent')
 
-
-
-
-
-
-
-#%%
-output_array = np.vstack(output_array)
-loss_array = np.vstack(loss_array)
-target_array = np.vstack(target_array)
-plt.scatter(output_array, target_array, s=1, c="gray")
-#plt.plot(output,output, c="red")
-plt.show()
-plt.plot(loss_array)
-plt.show()
-plt.plot(sorted(loss_array))
-plt.show()
-print(np.mean(abs(loss_array)))
 # %%
