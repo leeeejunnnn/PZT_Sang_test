@@ -18,8 +18,8 @@ from natsort import natsorted
 # %%
 data_dir = './dataset'
 
-intact_list = sorted(glob(data_dir+'/Intact/*')) 
-damaged_list = sorted(glob(data_dir + '/Damaged/*'))
+intact_list = sorted(glob(data_dir+'/Frequency domain/Intact/*')) 
+damaged_list = sorted(glob(data_dir + '/Frequency domain/Damaged/*'))
 print(len(intact_list), len(damaged_list))
 # %%
 for i in intact_list:
@@ -35,7 +35,7 @@ for i in intact_list:
     data=np.vstack(new_dataset)
     res_data=np.reshape(data,(33,-1))
     print(res_data.shape)
-    np.save(data_dir+'/'+dataset[0].split('/')[-1]+'.npy', res_data)
+    np.save(data_dir+'/Frequency domain/33d/'+dataset[0].split('/')[-1]+'.npy', res_data)
 
 print('done')
 # %%
@@ -52,6 +52,6 @@ for i in damaged_list:
     data=np.vstack(new_dataset)
     res_data=np.reshape(data,(33,-1))
     print(res_data.shape)
-    np.save(data_dir+'/'+dataset[0].split('/')[-1]+'.npy', res_data)
+    np.save(data_dir+'/Frequency domain/33d/'+dataset[0].split('/')[-1]+'.npy', res_data)
 
 print('done')

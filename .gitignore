@@ -226,4 +226,4 @@ $RECYCLE.BIN/
 /Checkpoint
 loss.npy
 runs/
-.png
+*.png
