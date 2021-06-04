@@ -30,8 +30,8 @@ Data_dir = './dataset/'
 
 # NN training parameters
 TENSORBOARD_STATE = True
-train_num = 
-num_epoch = 2048
+train_num = 604
+num_epoch = 2000
 BATCH_SIZE = 1500
 model = CNN_1dv()
 print(model)
@@ -42,8 +42,12 @@ LRSTEP = 5
 GAMMA = 0.1
 #%%
 dataset = data_pipeline_1d_nl(Data_dir)
-train_dataset, val_dataset, test_dataset = torch.utils.data.random_split(dataset, (1000, 500, 480) )
+print('train dataset length=' + str(len(dataset)))
+test_dataset = data_pipeline_1d_nlte(Data_dir)
+print('test dataset length=' + str(len(test_dataset)))
+train_dataset, val_dataset = torch.utils.data.random_split(dataset, (300,30) )
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
+#val_dataset, test_dataset = torch.utils.data.random_split(test_dataset, (500, 1150) )
 val_loader = DataLoader(val_dataset, batch_size=len(val_dataset), shuffle=True, num_workers=0)
 test_loader = DataLoader(test_dataset, shuffle=False, num_workers=0)
 #%%
@@ -56,7 +60,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=Learning_rate)
 ckpt_dir = './Checkpoint'
 if not os.path.exists(ckpt_dir):
     os.makedirs(ckpt_dir)
-ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_1d', train_num)
+ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_expnl_1d', train_num)
 print(ckpt_path)
 
 #%%
@@ -128,13 +132,13 @@ plt.plot(loss_array, label='train loss')
 plt.legend()
 plt.xlabel('epochs')
 plt.ylabel('loss')
-plt.savefig('test_result_loss_1d'+str(train_num)+'.png')
+plt.savefig('test_result_lossnl_1d'+str(train_num)+'.png')
 plt.show()
 np.save('loss_np'+str(train_num)+'.npy', loss_array)
 
 
 #%%
-test_ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_exp_1d', train_num)
+test_ckpt_path = '%s%s%d.pt' % (ckpt_dir, '/Checkpoint_expnl_1d', train_num)
 try:
     test_ckpt = torch.load(test_ckpt_path)
     model.load_state_dict(test_ckpt['model'])
@@ -197,10 +201,10 @@ def plot_confusion(confusion_matrix,classes,vis_format=None):
     plt.ylabel('Predicted')
     plt.xticks(rotation=45)  
     plt.tight_layout()
-    plt.savefig('test_resul_1dex' + str(train_num)+'.png')
+    plt.savefig('test_resulnl_1dex' + str(train_num)+'.png')
     plt.show()
 
-plot_confusion(cfm,['intact','damaged'],'percent')
+plot_confusion(cfm,['intact','damaged'])
 
 
 

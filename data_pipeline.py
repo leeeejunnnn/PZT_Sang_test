@@ -110,7 +110,7 @@ class data_pipeline_1d_nl(Dataset):
 class data_pipeline_1d_nlte(Dataset):
     def __init__(self, data_dir):
         self.data_dir = data_dir
-        self.data_list = sorted(glob(self.data_dir + '/1d/nl/tr/*.npy'))
+        self.data_list = sorted(glob(self.data_dir + '/1d/nl/te/*.npy'))
 
     def __len__(self):
         return len(self.data_list)
