@@ -30,8 +30,8 @@ Data_dir = './dataset/'
 
 # NN training parameters
 TENSORBOARD_STATE = True
-train_num = 5000
-num_epoch = 2048
+train_num = 6221
+num_epoch = 512
 BATCH_SIZE = 1500
 model = CNN_1dv()
 print(model)

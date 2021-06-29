@@ -57,8 +57,7 @@ model = model.to(device)
 loss_func = nn.CrossEntropyLoss().to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=Learning_rate)
 #scheduler = optim.lr_scheduler.StepLR(optimizer,step_size=LRSTEP, gamma=GAMMA)
-
-#%%
+ #%%
 ckpt_dir = './Checkpoint'
 if not os.path.exists(ckpt_dir):
     os.makedirs(ckpt_dir)

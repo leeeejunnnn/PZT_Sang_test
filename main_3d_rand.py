@@ -14,7 +14,7 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-from data_pipeline import data_pipeline_3d
+from data_pipeline import data_pipeline_1drd
 from model import CNN_3dv
 
 #%%
@@ -30,7 +30,7 @@ Data_dir = './dataset/'
 
 # NN training parameters
 TENSORBOARD_STATE = True
-train_num = 6221
+train_num = 6231
 num_epoch = 512
 BATCH_SIZE = 500
 model = CNN_3dv()
@@ -129,7 +129,7 @@ for epoch in range(num_epoch):
 #%%
 plt.plot(loss_array, label='train loss')
 plt.legend()
-plt.savefig('test_result_loss_3d'+str(train_num)+'.png')
+plt.savefig('/fig/test_result_loss_3d'+str(train_num)+'.png')
 plt.show()
 
 
@@ -197,7 +197,7 @@ def plot_confusion(confusion_matrix,classes,vis_format=None):
     plt.ylabel('Predicted')
     plt.xticks(rotation=45)  
     plt.tight_layout()
-    plt.savefig('test_resul_3dt'+str(train_num)+'.png')
+    plt.savefig('/fig/test_resul_3dt'+str(train_num)+'.png')
     plt.show()
 
 plot_confusion(cfm,['intact', 'damaged'],'percent')
